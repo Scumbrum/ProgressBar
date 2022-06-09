@@ -13,7 +13,7 @@ class ProgressBar extends PureComponent{
         super(props)
         this.refers =  []
         this.state = {
-            base:0
+            base:-1
         }
     }
 
@@ -57,14 +57,15 @@ class ProgressBar extends PureComponent{
         const width = (maxWidth/amount) - 50
         this.amount = amount
         this.width = width
-        let base = 0
         if(window.innerWidth > maxWidth) {
             this.setState({base:(window.innerWidth - maxWidth)/2})
+        } else {
+            this.setState({base:0})
         }
     }
 
     generateSteps = () => {
-        let {steps, maxWidth} = this.props
+        let {steps} = this.props
         const currentStep = this.getStepNumber()
         const stepsList = []
         let count = 1
@@ -84,13 +85,14 @@ class ProgressBar extends PureComponent{
     }
 
     getStepComponent = (step, index, status) => {
+        const title = step.title.split(" ")[0]
 
         return (
-            <li className={`ProgressItem ${status}`}>
+            <li className={`ProgressItem ${status}`} key={title}>
                 {status !== "done" ? 
                 <span className='marker'>{index}</span>:
                 <span className='marker'><i className='check'></i></span>}
-                <p>{step.title.split(" ")[0]}</p>
+                <p>{title}</p>
             </li>
         )
     }
@@ -99,7 +101,7 @@ class ProgressBar extends PureComponent{
         const ref = React.createRef()    
         this.refers[index]= ref
         return (
-            <li className='ProgressLine' style={{width:width+"px"}}>
+            <li className='ProgressLine' style={{width:width+"px"}} key={index}>
                 <span className="progress" ref={ref}></span>
             </li>
         )
