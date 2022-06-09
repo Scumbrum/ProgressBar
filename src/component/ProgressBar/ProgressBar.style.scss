@@ -1,0 +1,94 @@
+.ProgressContainer {
+    width: 100%;
+    overflow: visible;
+    padding: 30px 0 10px;
+    background-color: var(--breadcrumbs-background);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ProgressBar {
+    position: relative;
+    padding: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 0;
+    margin: 0;
+    width: 100%;
+}
+
+
+.ProgressBar li {
+    padding: 0;
+    margin: 0;
+}
+
+.ProgressBar li::before {
+    display: none;
+}
+
+.ProgressLine {
+    height: 5px;
+    background-color: var(--secondary-dark-color);
+}
+
+.ProgressContainer + .Checkout {
+    margin-top: 0;
+}
+
+.ProgressBar .ProgressItem{   
+    margin: 0 7.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(0, 23%);
+}
+
+.ProgressItem .marker {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    line-height: 100%;
+}
+
+.ProgressItem p {
+    margin: 5px 0 0 0;
+    font-weight: bold;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary-base-color);
+    width: 0;
+    display: block;
+    transition-duration: .5s;
+}
+
+.progress.complete {
+    width: 100%;
+}
+
+.ProgressItem.active .marker, .ProgressItem.done .marker{
+    background-color: var(--primary-base-color);
+}
+
+.ProgressItem.disactive .marker{
+    background-color: var(--secondary-dark-color);
+}
+
+.check {
+    display: block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #FFF;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+    transform: rotate(-45deg) translate(4px, -4px);
+}
